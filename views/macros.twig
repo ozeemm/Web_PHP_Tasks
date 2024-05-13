@@ -1,0 +1,3 @@
+{% macro button(text="Текст на кнопке", url="url", is_active = false, button_type="primary") %}
+    <a type="button" href="{{ url }}" class="btn btn-{{ is_active ? button_type : "link" }}">{{ text }}</a>
+{% endmacro %}
