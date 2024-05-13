@@ -4,6 +4,7 @@
 {% block content %}
 <div class="mt-3 mb-3">
     <h1>{{ title }}</h1>
+    <p>{{ description }}</p>
     {{ button("Картинка", "#{url}/image", is_image) }}
     {{ button("Описание", "#{url}/info", is_info) }}
 </div>

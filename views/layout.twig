@@ -17,8 +17,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                {% for item in menu %}
-                    <a href="{{ item.url }}" class="nav-link {{title == item.title ? 'active'}}">{{ item.title }}</a>
+                <a href="/" class="nav-link {{title == 'Главная' ? 'active'}}">Главная</a>
+                {% for item in characters %}
+                    <a href="/character/{{ item.id }}" class="nav-link {{title == item.title ? 'active'}}">{{ item.title }}</a>
                 {% endfor %}
             </div>
             </div>

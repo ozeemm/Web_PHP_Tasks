@@ -8,10 +8,10 @@
     <div class="card m-2 col-auto" style="width: 15rem;">
         <img class="card-img-top p-3 pb-0" src="{{ object.image }}" alt="" height="170">
         <div class="card-body">
-            {{ button(object.title, "", true, "primary w-100") }}
+            {{ button(object.title, "/character/#{object.id}", true, "primary w-100") }}
             <div class="d-flex justify-content-center">
-                {{ button("Картинка", "") }}
-                {{ button("Описание", "") }}
+                {{ button("Картинка", "/character/#{object.id}/image") }}
+                {{ button("Описание", "/character/#{object.id}/info") }}
             </div>
         </div>
     </div>

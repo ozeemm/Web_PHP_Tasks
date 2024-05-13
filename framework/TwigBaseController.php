@@ -5,21 +5,18 @@
         public $title = ""; // Название страницы
         public $template = ""; // Шаблон страницы
         protected \Twig\Environment $twig; // Ссылка на экземпляр twig для рендеринга
-        
-        // Конструктор
-        public function __construct($twig)
-        {
+
+        public function setTwig($twig) {
             $this->twig = $twig;
         }
 
         // Переопределяем функцию контекста
         public function getContext(): array{
-            $menu = [["title" => "Главная", "url" => "/"],
-                    ["title" => "Фрай", "url" => "/Fry"], 
-                    ["title" => "Бендер", "url" => "/Bender"]];
             $context = parent::getContext();
             $context['title'] = $this->title; // Добавляем title
-            $context['menu'] = $menu;
+            
+            $query = $this->pdo->query("SELECT * FROM characters"); // Запрос
+            $context['characters'] = $query->fetchAll(); // Стягивание данных
 
             return $context;
         }
