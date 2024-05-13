@@ -17,10 +17,16 @@
         $loader = new \Twig\Loader\FilesystemLoader('../views');
     
         // Экземпляр Twig с помощью которого будет рендерить
-        $twig = new \Twig\Environment($loader);
+        $twig = new \Twig\Environment($loader, [
+            "debug" => true // добавляем тут debug режим
+        ]);
+        $twig->addExtension(new \Twig\Extension\DebugExtension()); // активируем расширение
+
         $url = $_SERVER["REQUEST_URI"];
 
         $controller = new Controller404($twig); // Переменная под контроллер
+
+        $pdo = new PDO("mysql:host=localhost:3307;dbname=futurama;charset=utf8", "root", ""); // Подключаемся к БД
 
         if($url == "/"){
             $controller = new MainController($twig);
@@ -46,6 +52,8 @@
             $controller = new BenderController($twig);
         }
 
-        if($controller)
+        if($controller){
+            $controller->setPDO($pdo);
             $controller->get();
+        }
 ?>

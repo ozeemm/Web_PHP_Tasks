@@ -3,17 +3,19 @@
 {% extends "layout.twig" %}
 
 {% block content %}
-<div class="mt-3">
-    <ul class="list-group">
-        {% for item in menu %}
-            {% if (item.title != "Главная") %}
-                <li class="list-group-item">
-                    {{ button(item.title, item.url, true) }}
-                    {{ button("Картинка", "#{item.url}/image") }}
-                    {{ button("Описание", "#{item.url}/info") }}
-                </li>  
-            {% endif %}
-        {% endfor %}
-    </ul>
+<div class="mt-2 d-flex row">
+    {% for object in characters %}
+    <div class="card m-2 col-auto" style="width: 15rem;">
+        <img class="card-img-top p-3 pb-0" src="{{ object.image }}" alt="" height="170">
+        <div class="card-body">
+            {{ button(object.title, "", true, "primary w-100") }}
+            <div class="d-flex justify-content-center">
+                {{ button("Картинка", "") }}
+                {{ button("Описание", "") }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
 </div>
 {% endblock %}
