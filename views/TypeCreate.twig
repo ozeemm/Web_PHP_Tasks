@@ -25,4 +25,18 @@
     </div>
 </form>
 
+<div class="list-group mt-4">
+    {% for type in types %}
+    <div class="d-flex">
+        <a href="/?type={{type.type}}" class="list-group-item list-group-item-action">{{type.type}}</a>
+        
+        <form action="/type/{{type.id}}/delete" method="POST" class="ms-2">
+            <button type="submit" class="btn btn-danger">
+                <i class="fa fa-times"></i>
+            </button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock %}
