@@ -17,11 +17,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a href="/" class="nav-link {{title == 'Главная' ? 'active'}}">Главная</a>
+                    <a href="/" class="nav-link active">Главная</a>
                     {% for type in types %}
                         <a href="/?type={{type.type}}" class="nav-link">{{ type.type }}</a>
                     {% endfor %}
-                    <a href="/search" class="nav-link {{title == 'Поиск' ? 'active'}}">Поиск</a>
+                    <a href="/search" class="nav-link active">Поиск</a>
+                    <a href="/character/create" class="nav-link active">Добавить</a>
                 </div>
             </div>
         </div>

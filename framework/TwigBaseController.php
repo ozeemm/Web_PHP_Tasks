@@ -21,8 +21,8 @@
         public function getTemplate(){ return $this->template; }
 
         // Рендерим результат
-        public function get() {
-            echo $this->twig->render($this->getTemplate(), $this->getContext());
+        public function get(array $context) {
+            echo $this->twig->render($this->getTemplate(), $context);
         }
     }
 ?>

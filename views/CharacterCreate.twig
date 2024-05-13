@@ -1,0 +1,48 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+<h1>Добавление персонажа</h1>
+<hr>
+
+{% if message %}
+<div class="alert alert-info">
+    {{ message }}.
+    <a href="/character/{{ id }}"> Посмотреть.</a>
+</div>
+{% endif %}
+
+<form action="" method="POST" enctype="multipart/form-data" class="row g-3">
+    <div class="col-4">
+        <label class="form-label">Имя</label>
+        <input type="text" class="form-control" name="name">
+    </div>
+    <div class="col-4">
+        <label class="form-label">Краткое описание</label>
+        <input type="text" class="form-control" name="description">
+    </div>
+    <div class="col-3">
+        <label class="form-label">Тип</label>
+        <select class="form-control" name="type">
+            {% for type in types %}
+                <option value="{{ type.type }}">{{ type.type }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-1" style="margin-top: 3rem">
+        <a type="button" class="btn btn-primary" href="/character/create/type">Добавить</a>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Картинка</label>
+        <input class="form-control" type="file" name="image">
+      </div>
+    <div class="col-12">
+        <textarea name="info" placeholder="Полное описание..." class="form-control" rows="5"></textarea>
+    </div>
+
+    <div class="col-12 text-end">
+        <button type="submit" class="btn btn-primary">Добавить</button>
+    </div>
+</form>
+
+{% endblock %}

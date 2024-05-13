@@ -6,6 +6,8 @@
         require_once '../controllers/Controller404.php';
         require_once "../controllers/ObjectController.php";
         require_once "../controllers/SearchController.php";
+        require_once "../controllers/CharacterCreateController.php";
+        require_once "../controllers/TypeCreateController.php";
 
         // Создаем загрузчик шаблонов, и указываем папку с шаблонами
         // только слеш вместо точек
@@ -23,6 +25,8 @@
         $router->add("/", MainController::class);
         $router->add("/character/(?P<id>\d+)", ObjectController::class);
         $router->add("/search", SearchController::class);
+        $router->add("/character/create", CharacterCreateController::class);
+        $router->add("/character/create/type", TypeCreateController::class);
 
         $router->get_or_default(Controller404::class);
 ?>
