@@ -1,6 +1,16 @@
 <?php
         // Подключаем пакеты
         require_once '../vendor/autoload.php';
+        require_once '../Controllers/MainController.php';
+        require_once "../controllers/Controller404.php";
+
+        require_once '../Controllers/BenderController.php';
+        require_once '../Controllers/BenderImageController.php';
+        require_once '../Controllers/BenderInfoController.php';
+
+        require_once '../Controllers/FryController.php';
+        require_once '../Controllers/FryImageController.php';
+        require_once '../Controllers/FryInfoController.php';
 
         // Создаем загрузчик шаблонов, и указываем папку с шаблонами
         // только слеш вместо точек
@@ -9,55 +19,33 @@
         // Экземпляр Twig с помощью которого будет рендерить
         $twig = new \Twig\Environment($loader);
         $url = $_SERVER["REQUEST_URI"];
-        
-        $context = [];
-        $template = "";
-        $title = "";
 
-        $menu = [["title" => "Главная", "url" => "/"],
-                ["title" => "Фрай", "url" => "/Fry"], 
-                ["title" => "Бендер", "url" => "/Bender"]];
-
-        $nav_menu = [["name" => "Фрай", "url" => "/Fry"],
-                    ["name" => "Бендер", "url" => "/Bender"]];
+        $controller = new Controller404($twig); // Переменная под контроллер
 
         if($url == "/"){
-            $template = "main.twig";
-            $title = "Главная";
+            $controller = new MainController($twig);
         }   
+
+        elseif(preg_match("#^/Fry/image#", $url)){
+            $controller = new FryImageController($twig);
+        }
+        elseif(preg_match("#^/Fry/info#", $url)){
+            $controller = new FryInfoController($twig);
+        }
         elseif(preg_match("#^/Fry#", $url)){
-            $template = "object.twig";
-            $title = "Фрай";
-            $context["url"] = "/Fry";
-            $context["image"] = "/images/Fry.jpg";
-            $context["description"] = "Родился 14 августа 1974 года.\nЗаморозил себя в криогенной камере за несколько секунд до наступления 2000 года.\nРазморозился в конце 2999 года, и в дальнейшем стал курьером в компании «Межпланетный Экспресс».";
-            if(preg_match("#^/Fry/image#", $url)){
-                $context["is_image"] = true;
-                $template = "image.twig";
-            }
-            elseif(preg_match("#^/Fry/info#", $url)){
-                $context["is_info"] = true;
-                $template = "info.twig";
-            }
+            $controller = new FryController($twig);
         }
-        else if(preg_match("#^/Bender#", $url)){
-            $template = "object.twig";
-            $title = "Бендер";
-            $context["url"] = "/Bender";
-            $context["image"] = "/images/Bender.jpg";
-            $context["description"] = "Был сделан в Мексике в 2997 году. Имеет серийный номер 2716057.\nПьет большое количество алкоголя, чтобы подзарядить свои топливные элементы.\nАвантюрист, любит курить сигары.\nВ настоящее время живет в квартире с Фраем.";
-            if(preg_match("#^/Bender/image#", $url)){
-                $context["is_image"] = true;
-                $template = "image.twig";
-            }
-            elseif(preg_match("#^/Bender/info#", $url)){
-                $context["is_info"] = true;
-                $template = "info.twig";
-            }
+
+        elseif(preg_match("#^/Bender/image#", $url)){
+            $controller = new BenderImageController($twig);
         }
-        $context["menu"] = $menu;
-        $context["nav_menu"] = $nav_menu;
-        $context["title"] = $title;
-        
-        echo $twig->render($template, $context);
+        elseif(preg_match("#^/Bender/info#", $url)){
+            $controller = new BenderInfoController($twig);
+        }
+        elseif(preg_match("#^/Bender#", $url)){
+            $controller = new BenderController($twig);
+        }
+
+        if($controller)
+            $controller->get();
 ?>
