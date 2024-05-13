@@ -4,14 +4,13 @@
 {% block content %}
 <div class="mt-3 mb-3">
     <h1>{{ title }}</h1>
-    <p>{{ description }}</p>
     {{ button("Картинка", "?show=image", is_image) }}
     {{ button("Описание", "?show=info", is_info) }}
 </div>
 
 <ul class="list-group">
   <li class="list-group-item">
-    {% block objectContent %}Тут появится информация{% endblock %}
+    {% block objectContent %} {{ description }} {% endblock %}
   </li>
 </ul>
 {% endblock %}

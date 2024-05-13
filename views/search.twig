@@ -1,0 +1,35 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <h1>Поиск</h1>
+
+    <form action="">
+        <div class="row g-3">
+            <div class="col">
+                <label class="form-label">Тип</label>
+                <select class="form-select" name="type">
+                    <option value="Все">Все</option>
+                    <option value="Люди">Люди</option>
+                    <option value="Другие">Другие</option>
+                </select>       
+            </div>
+            <div class="col">
+                <label class="form-label">Название</label>
+                <input type="text" class="form-control" name="title">
+            </div>
+            <div class="col">
+                <label class="form-label">Описание</label>
+                <input type="text" class="form-control" name="description">
+            </div>
+            <div class="col" style="margin-top: 3rem">
+                <button type="submit" class="btn btn-primary">Найти</button>
+            </div>
+        </div>
+      </form>
+
+    <div class="list-group mt-4">
+        {% for obj in search_objects %}
+            <a href="/character/{{obj.id}}" class="list-group-item list-group-item-action">{{obj.title}}</a>
+        {% endfor %}
+    </div>
+{% endblock %}
