@@ -1,0 +1,21 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+<div class="mt-3 mb-3">
+    <h1>{{ title }}</h1>
+    <ul class="nav nav-pills">
+    <li class="nav-item">
+        <a class="nav-link {{ is_image ? 'active' }}" href="{{ url }}/image">Картинка</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ is_info ? 'active' }}" href="{{ url }}/info">Описание</a>
+    </li>
+    </ul>
+</div>
+
+<ul class="list-group">
+  <li class="list-group-item">
+    {% block objectContent %}Тут появится информация{% endblock %}
+  </li>
+</ul>
+{% endblock %}
