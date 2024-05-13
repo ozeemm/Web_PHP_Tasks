@@ -1,5 +1,7 @@
 <?php
-    class Controller404 extends TwigBaseController{
+    require_once "BaseFuturamaTwigController.php";
+
+    class Controller404 extends BaseFuturamaTwigController{
         public $title = "Страница не найдена";
         public $template = "404.twig";
 

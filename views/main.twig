@@ -10,8 +10,8 @@
         <div class="card-body">
             {{ button(object.title, "/character/#{object.id}", true, "primary w-100") }}
             <div class="d-flex justify-content-center">
-                {{ button("Картинка", "/character/#{object.id}/image") }}
-                {{ button("Описание", "/character/#{object.id}/info") }}
+                {{ button("Картинка", "/character/#{object.id}?show=image") }}
+                {{ button("Описание", "/character/#{object.id}?show=info") }}
             </div>
         </div>
     </div>

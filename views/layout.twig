@@ -18,8 +18,8 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a href="/" class="nav-link {{title == 'Главная' ? 'active'}}">Главная</a>
-                {% for item in characters %}
-                    <a href="/character/{{ item.id }}" class="nav-link {{title == item.title ? 'active'}}">{{ item.title }}</a>
+                {% for type in types %}
+                    <a href="/?type={{type.type}}" class="nav-link">{{ type.type }}</a>
                 {% endfor %}
             </div>
             </div>

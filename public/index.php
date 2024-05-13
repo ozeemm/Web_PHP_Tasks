@@ -5,8 +5,6 @@
         require_once '../Controllers/MainController.php';
         require_once '../controllers/Controller404.php';
         require_once "../controllers/ObjectController.php";
-        require_once "../controllers/InfoController.php";
-        require_once "../controllers/ImageController.php";
 
         // Создаем загрузчик шаблонов, и указываем папку с шаблонами
         // только слеш вместо точек
@@ -23,8 +21,6 @@
         $router = new Router($twig, $pdo);
         $router->add("/", MainController::class);
         $router->add("/character/(?P<id>\d+)", ObjectController::class);
-        $router->add("/character/(?P<id>\d+)/info", InfoController::class);
-        $router->add("/character/(?P<id>\d+)/image", ImageController::class);
 
         $router->get_or_default(Controller404::class);
 ?>

@@ -14,16 +14,15 @@
         public function getContext(): array{
             $context = parent::getContext();
             $context['title'] = $this->title; // Добавляем title
-            
-            $query = $this->pdo->query("SELECT * FROM characters"); // Запрос
-            $context['characters'] = $query->fetchAll(); // Стягивание данных
 
             return $context;
         }
 
+        public function getTemplate(){ return $this->template; }
+
         // Рендерим результат
         public function get() {
-            echo $this->twig->render($this->template, $this->getContext());
+            echo $this->twig->render($this->getTemplate(), $this->getContext());
         }
     }
 ?>
