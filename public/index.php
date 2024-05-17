@@ -10,6 +10,7 @@
         require_once "../Controllers/TypeCreateController.php";
         require_once "../Controllers/CharacterDeleteController.php";
         require_once "../Controllers/TypeDeleteController.php";
+        require_once "../Controllers/CharacterUpdateController.php";
 
         // Создаем загрузчик шаблонов, и указываем папку с шаблонами
         // только слеш вместо точек
@@ -30,6 +31,7 @@
         $router->add("/character/(?P<id>\d+)", ObjectController::class);
         $router->add("/character/create", CharacterCreateController::class);
         $router->add("/character/(?P<id>\d+)/delete", CharacterDeleteController::class);
+        $router->add("/character/(?P<id>\d+)/edit", CharacterUpdateController::class);
 
         $router->add("/type/create", TypeCreateController::class);
         $router->add("/type/(?P<id>\d+)/delete", TypeDeleteController::class);

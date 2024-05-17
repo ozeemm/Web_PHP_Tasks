@@ -6,8 +6,13 @@
 <div class="mt-2 d-flex row">
     {% for object in characters %}
     <div class="card m-2 col-auto position-relative" style="width: 15rem;">
-        <div class="position-absolute" style="right: 4px; top: 4px">
-            <form action="/character/{{object.id}}/delete" method="POST">
+        <div class="position-absolute d-flex" style="right: 4px; top: 4px">
+            <form action="/character/{{object.id}}/edit" method="GET">
+                <button type="submit" class="btn btn-info">
+                    <i class="fa fa-pencil-square"></i>
+                </button>
+            </form>
+            <form action="/character/{{object.id}}/delete" method="POST" class="ms-2">
                 <button type="submit" class="btn btn-danger">
                     <i class="fa fa-times"></i>
                 </button>
