@@ -9,8 +9,9 @@
                 <label class="form-label">Тип</label>
                 <select class="form-select" name="type">
                     <option value="Все">Все</option>
-                    <option value="Люди">Люди</option>
-                    <option value="Другие">Другие</option>
+                    {% for type in types %}
+                        <option value="{{type.type}}">{{type.type}}</option>
+                    {% endfor %}
                 </select>       
             </div>
             <div class="col">
