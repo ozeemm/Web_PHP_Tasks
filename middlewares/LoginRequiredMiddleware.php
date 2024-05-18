@@ -15,7 +15,7 @@
             $query->bindValue("user", $user);
             $query->bindValue("password", $password);
             $query->execute();
-            $data = $query->fetchAll();
+            $data = $query->fetch();
             
             // Сверяем с корректными
             if($data == null){

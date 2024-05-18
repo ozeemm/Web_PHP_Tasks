@@ -11,6 +11,7 @@
         require_once "../Controllers/CharacterDeleteController.php";
         require_once "../Controllers/TypeDeleteController.php";
         require_once "../Controllers/CharacterUpdateController.php";
+        require_once "../Controllers/SetWelcomeController.php";
         require_once "../middlewares/LoginRequiredMiddleware.php";
 
         // Создаем загрузчик шаблонов, и указываем папку с шаблонами
@@ -42,5 +43,6 @@
         $router->add("/type/(?P<id>\d+)/delete", TypeDeleteController::class)
                     ->middleware(new LoginRequiredMiddleware());
         
+        $router->add("/set-welcome", SetWelcomeController::class);
         $router->get_or_default(Controller404::class);
 ?>

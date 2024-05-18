@@ -23,12 +23,23 @@
                     {% endfor %}
                     <a href="/search" class="nav-link active">Поиск</a>
                     <a href="/character/create" class="nav-link active">Добавить</a>
+                    <span class="nav-link">session_id: {{ session_id }}</span>
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class="container">
-        {% block content %}{% endblock %}
+    <div class="container d-flex">
+        <div class="col-10">
+            {% block content %}{% endblock %}
+        </div>
+        <div class="col-2 ms-5">
+            Последний страницы которые Вы посетили:
+            <div class="list-group">
+                {% for url in pages_history %}
+                    <a href="{{url}}" class="list-group-item list-group-item-action">{{url}}</a>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </body>
