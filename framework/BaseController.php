@@ -4,6 +4,12 @@ abstract class BaseController{
     public PDO $pdo;
     public array $params;
 
+    public function __construct()
+    {
+        session_set_cookie_params(60 * 60 * 10); // Время жизни 10 часов (по дефолту - до закрытия браузера)
+        session_start();
+    }
+
     public function setPDO($pdo){
         $this->pdo = $pdo;
     }
@@ -18,9 +24,6 @@ abstract class BaseController{
     }
 
     public function process_response(){
-        session_set_cookie_params(60 * 60 * 10); // Время жизни 10 часов (по дефолту - до закрытия браузера)
-        session_start();
-
         $method = $_SERVER['REQUEST_METHOD'];
         $context = $this->getContext();
         

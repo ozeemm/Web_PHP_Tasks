@@ -9,24 +9,12 @@
             $types = $query->fetchAll();
             $context['types'] = $types;
 
-            $context = $this->writeHistory($context);
-
-            return $context;
-        }
-
-        public function writeHistory(array $context){
-            $url = $_SERVER['REQUEST_URI'];
-            if(!isset($_SESSION['pages_history'])){
-                $_SESSION['pages_history'] = [];
-            }
-            array_unshift($_SESSION['pages_history'], $url);
-
-            while(count($_SESSION['pages_history']) > 10){
-                array_pop($_SESSION['pages_history']);
-            }
-
+            //$context = $this->writeHistory($context);
             $context['session_id'] = session_id();
-            $context['pages_history'] = (isset($_SESSION['pages_history']) ? $_SESSION['pages_history'] : '');
+            $context['pages_history'] = (isset($_SESSION['pages_history']) ? $_SESSION['pages_history'] : []);
+            $context['is_logged'] = isset($_SESSION['is_logged']) ? $_SESSION['is_logged'] : false;
+            $context['username'] = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+
             return $context;
         }
     }

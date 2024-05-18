@@ -11,8 +11,10 @@
         require_once "../Controllers/CharacterDeleteController.php";
         require_once "../Controllers/TypeDeleteController.php";
         require_once "../Controllers/CharacterUpdateController.php";
-        require_once "../Controllers/SetWelcomeController.php";
+        require_once "../Controllers/LoginController.php";
+        require_once "../Controllers/LogoutController.php";
         require_once "../middlewares/LoginRequiredMiddleware.php";
+        require_once "../middlewares/PagesHistoryMiddleware.php";
 
         // Создаем загрузчик шаблонов, и указываем папку с шаблонами
         // только слеш вместо точек
@@ -27,22 +29,35 @@
         $pdo = new PDO("mysql:host=localhost:3307;dbname=futurama;charset=utf8", "root", ""); // Подключаемся к БД
 
         $router = new Router($twig, $pdo);
-        $router->add("/", MainController::class);
-        $router->add("/search", SearchController::class);
+        $router->add("/", MainController::class)
+                    ->middleware(new LoginRequiredMiddleware())
+                    ->middleware(new PagesHistoryMiddleware());
+        $router->add("/search", SearchController::class)
+                    ->middleware(new LoginRequiredMiddleware())
+                    ->middleware(new PagesHistoryMiddleware());
 
-        $router->add("/character/(?P<id>\d+)", ObjectController::class);
+        $router->add("/character/(?P<id>\d+)", ObjectController::class)
+                    ->middleware(new LoginRequiredMiddleware())
+                    ->middleware(new PagesHistoryMiddleware());
         $router->add("/character/create", CharacterCreateController::class)
-                    ->middleware(new LoginRequiredMiddleware());
+                    ->middleware(new LoginRequiredMiddleware())
+                    ->middleware(new PagesHistoryMiddleware());
         $router->add("/character/(?P<id>\d+)/delete", CharacterDeleteController::class)
-                    ->middleware(new LoginRequiredMiddleware());
+                    ->middleware(new LoginRequiredMiddleware())
+                    ->middleware(new PagesHistoryMiddleware());
         $router->add("/character/(?P<id>\d+)/edit", CharacterUpdateController::class)
-                    ->middleware(new LoginRequiredMiddleware());
+                    ->middleware(new LoginRequiredMiddleware())
+                    ->middleware(new PagesHistoryMiddleware());
 
         $router->add("/type/create", TypeCreateController::class)
-                    ->middleware(new LoginRequiredMiddleware());
+                    ->middleware(new LoginRequiredMiddleware())
+                    ->middleware(new PagesHistoryMiddleware());
         $router->add("/type/(?P<id>\d+)/delete", TypeDeleteController::class)
-                    ->middleware(new LoginRequiredMiddleware());
+                    ->middleware(new LoginRequiredMiddleware())
+                    ->middleware(new PagesHistoryMiddleware());
         
-        $router->add("/set-welcome", SetWelcomeController::class);
+        $router->add("/login", LoginController::class);
+        $router->add("/logout", LogoutController::class);
+        
         $router->get_or_default(Controller404::class);
 ?>

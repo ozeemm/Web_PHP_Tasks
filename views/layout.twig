@@ -26,6 +26,11 @@
                     <span class="nav-link">session_id: {{ session_id }}</span>
                 </div>
             </div>
+            {% if is_logged %}
+                {{username}}<a href="/logout">(Выйти)</a>
+            {% endif %}
+            
+            
         </div>
     </nav>
 
