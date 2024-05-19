@@ -4,11 +4,6 @@
         public $template = "auth.twig";
 
         public function get(array $context){
-            if($_SESSION['is_logged']){
-                $url = $_SERVER['HTTP_REFERER'];
-                Header("Location: $url");
-                exit;
-            }
             parent::get($context);
         }
 
@@ -26,6 +21,7 @@
 
             if($data == null){ // Unathorized
                 $_SESSION['is_logged'] = false;
+                $context['message'] = "Неверный логин или пароль";
                 $this->get($context);
             }
             else{

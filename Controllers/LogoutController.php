@@ -1,6 +1,6 @@
 <?php
     class LogoutController extends BaseController{
-        public function get(array $context)
+        public function post(array $context)
         {
             $_SESSION['is_logged'] = false;
             $_SESSION['username'] = "";

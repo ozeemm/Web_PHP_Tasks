@@ -27,7 +27,9 @@
                 </div>
             </div>
             {% if is_logged %}
-                {{username}}<a href="/logout">(Выйти)</a>
+                <form action="/logout" method="POST">
+                    {{username}}<button type="submit" class="btn btn-link">(Выйти)</button>
+                </form>
             {% endif %}
             
             
