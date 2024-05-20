@@ -2,7 +2,7 @@
     class PagesHistoryMiddleware extends BaseMiddleware{
         public function apply(BaseController $controller, array $context)
         {
-            $url = $_SERVER['REQUEST_URI'];
+            $url = urldecode($_SERVER['REQUEST_URI']);
             if(!isset($_SESSION['pages_history'])){
                 $_SESSION['pages_history'] = [];
             }

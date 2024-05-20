@@ -18,10 +18,7 @@
             $query = $this->pdo->prepare($sql);
             $query->bindValue("type", $type);
             $query->execute();
-
-            $context['message'] = "Вы успешно создали новый тип персонажей";
-
-            $this->get($context);
+            //$this->get($context);
             
             // Редирект, чтобы при обновлении страницы не отправлялся ещё один POST и обновлялась навигация
             header("Location: /type/create");

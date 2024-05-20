@@ -43,8 +43,7 @@
                     ->middleware(new LoginRequiredMiddleware())
                     ->middleware(new PagesHistoryMiddleware());
         $router->add("/character/(?P<id>\d+)/delete", CharacterDeleteController::class)
-                    ->middleware(new LoginRequiredMiddleware())
-                    ->middleware(new PagesHistoryMiddleware());
+                    ->middleware(new LoginRequiredMiddleware());
         $router->add("/character/(?P<id>\d+)/edit", CharacterUpdateController::class)
                     ->middleware(new LoginRequiredMiddleware())
                     ->middleware(new PagesHistoryMiddleware());
@@ -53,8 +52,7 @@
                     ->middleware(new LoginRequiredMiddleware())
                     ->middleware(new PagesHistoryMiddleware());
         $router->add("/type/(?P<id>\d+)/delete", TypeDeleteController::class)
-                    ->middleware(new LoginRequiredMiddleware())
-                    ->middleware(new PagesHistoryMiddleware());
+                    ->middleware(new LoginRequiredMiddleware());
         
         $router->add("/login", LoginController::class);
         $router->add("/logout", LogoutController::class);
